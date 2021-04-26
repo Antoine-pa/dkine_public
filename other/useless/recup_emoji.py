@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands, tasks
-token_test = "NzMzMDQyMjYxODU1Njk5MDY2.Xw9Yzg.oRizUpOlITSMSaeyT_gZZQWB0DE"
+token_test = ""
 intents = discord.Intents.default()
 intents.members = True
 prefix = "!!"
