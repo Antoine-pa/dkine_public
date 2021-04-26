@@ -1,0 +1,147 @@
+======================
+RESSOURCES :
+- population
+- or
+- fer
+- charbon
+- pierre
+- lave
+- meteor
+- rune
+- bois
+- cuir (leather)
+- nourriture
+- énergie
+- rep
+
+ordre de grandeur :
+    - x1  : charbon/population 
+    - x2  : fer/pierre/(rune à part mais pour le cout de produc, x2)
+    - x4  : cuir/bois
+    - x20 : or
+charbon = population < fer = pierre = rune < cuir = bois < or
+
+
+======================
+RECRUTEMENT :
+cout :
+    - 1 soldat  : 10 fers, 5 charbons, 1 population, 25 or   -
+    - 1 archer  : 10 cuir, 5 bois, 1 population, 25 or        |-- caserne
+    - 1 mage    : 10 cuir, 5 runes, 1 population, 25 or      -
+    - 1 machine : 15 bois, 10 pierre, 2 population, 25 or    ---- atelier
+
+- toataux pour 1 de chaque:
+    - fer        : 10
+    - charbon    : 5
+    - cuir       : 20
+    - bois       : 20
+    - rune       : 5
+    - pierre     : 10
+    - or         : 100
+    - population : 5
+
+
+
+======================
+FABRICATION DE MATÉRIAUX :
+(n = lvl atelier)
+- 1 rune    : 2 laves / 2 meteor  -- atelier 30*(1-n/25)secondes de production
+
+
+
+======================
+BATIMENTS DE ZONE :
+liste bat :
+    - 1 ferme     : map A 1 ferme lvl 2 de base sinon 0, nb max par zone 5, lvl max 3
+    - 1 mine      : map B 1 mine lvl 2 de base sinon 0, nb max par zone 5, lvl max 3
+    - 1 mine lave : map C 1 mine de lave lvl 1 de base (mine de lave exclusivement map C), nb max par zone 10, lvl max 3
+
+amélioration/construction :
+    (nn = nouveau niveau)
+    (nj = niveau joueur)
+    - amélioration ferme 1 lvl : 
+        - (nn*500*(1+nj/100))**1.25    or
+        - (nn*100*(1+nj/100))**1.25    bois
+        - (nn*25*(1+nj/100))           population
+
+    - amélioration mine 1 lvl : 
+        - (nn*500*(1+nj/100))**1.25    or
+        - (nn*50*(1+nj/100))**1.25     pierre
+        - (nn*25*(1+nj/100))           population
+
+    - amélioration mine de lave 1 lvl : 
+        - (nn*750*(1+nj/100))**1.25    or
+        - (nn*75*(1+nj/100))**1.25     fer
+        - (nn*37*(1+nj/100))           population
+
+
+
+======================
+BATIMENTS DE PROFILE :
+- liste bat : 
+    - caserne : aucune de base, nb max 1, max lvl 2 (chaque niveau impair, débloque 1 troupe)
+    - atelier : aucun de base, nb max 1, max lvl 2
+    - ferme : 1 de base, nb max 1, max lvl 10
+    - mine : 1 de base, nb max 1, max lvl 10
+
+
+- amélioration :
+    (nn = nouveau niveau)
+    (nj = niveau joueur)
+
+    - amélioration caserne 1 lvl : 
+        - (nn*100*(1+nj/100))**1.2     pierre
+        - (nn*200*(1+nj/100))**1.2     cuir
+        - (nn*1000*(1+nj/100))**1.2    or
+        - (nn*50*(1+nj/100))**1.2      population
+
+    - amélioration atelier 1 lvl : 
+        - (nn*37*(1+nj/100))**1.2      charbon
+        - (nn*150*(1+nj/100))**1.2     bois
+        - (nn*750*(1+nj/100))**1.2     or
+        - (nn*37*(1+nj/100))**1.2      population
+
+
+
+
+
+
+
+
+
+    - amélioration ferme 1 lvl : 
+        - (nn*500*(1+nj/100))**1.25    or
+        - (nn*100*(1+nj/100))**1.25    bois
+        - (nn*25*(1+nj/100))           population
+
+    - amélioration mine 1 lvl : 
+        - (nn*500*(1+nj/100))**1.25    or
+        - (nn*50*(1+nj/100))**1.25     pierre
+        - (nn*25*(1+nj/100))           population
+
+    - amélioration mine de lave 1 lvl : 
+        - (nn*750*(1+nj/100))**1.25    or
+        - (nn*75*(1+nj/100))**1.25     fer
+        - (nn*37*(1+nj/100))           population
+
+
+
+
+
+
+
+======================
+COMMANDES DE RÉCUPÉRATIONS DE RESSOURCES :
+(nj = lvl joueur)
+- weekly : + population, 
+- daily  : + population, 
+- tax    : + population / - population (en fonction du niveau de la taxe), or
+- meteor : + meteor
+- rep    : + 1 rep
+- box    : population, or, fer, charbon, pierre /OU/ population, lave, meteor, rune /OU/ population, bois, cuir, nourriture, or
+
+- collect :
+    (nb = lvl bat)
+    - ferme     : bois, cuir, nourriture
+    - mine      : pierre, charbon, or, fer
+    - mine_lave : lave, (charbon, or, fer -> pas bcp)

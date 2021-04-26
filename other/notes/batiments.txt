@@ -1,0 +1,33 @@
+liste batiments:
+
+LISTE ABREVIATIONS
+
+    n = niveau
+
+
+FORMULAIRE EXAMPLE
+
+nom_batiment(niveau_max, espace occuper):
+    description de ce que ca produit
+    prix niveau 1
+    formule pour les prix de chaque niveau
+    avanatages des niveaux
+
+caserme(11, 25+10*n):
+    fantassasin, archer piques, chevalier, fusil, trolls
+    bois 350, pierre 250, fer 50
+    bois *= 1.5*n, pierre *= 2*n, fer *=3*n
+    les niveaux impaires debloque une unite(1-->fantassasin, 3-->archer, etc.)
+    les niveaux paires diminuent par 1.3 le tempsde formation de toutes les unites
+
+atelier(5, 100+50*n):
+    catapulte, trebuchet, cannon
+    bois 1000, pierre 750, fer 250
+    bois *= 1.2*n, pierre *= 1.4*n, fer *= 3.5*n
+    les niveaux impaires debloque une unite(1-->fantassasin, 3-->archer, etc.)
+    les niveaux paires diminuent par 1.3 le tempsde formation de toutes les unites
+
+tour des mages(1, 40):
+    mage
+    bois = 1000, pierre = 5000, runes = 500
+

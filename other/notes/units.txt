@@ -1,0 +1,102 @@
+Combats:
+	troupes cac: soldats
+	troupes non-cac: distance, mages et machines de siege
+
+	Chaque troupe as une certaine puissance
+	Le defenseur as un bonus de 10% en tant que defenseur
+	Le defenseur peut acheter des structures sur cette map pour augmenter son bonus de defenseur(pour un max de 100% de bonus(tres hl)) si il perd la province les structures sont detruite completement
+	Quand un type de troupe non-cac frappe elle va frapper toutes les troupes qui frappent apres elle(completement random) et detruiras un total de troupes selon la puissance que toutes les troupes de ce type ont.
+	Pour les troupes de cac ce sont elles qui determinnent le fight (pour savoir qui gagne faut voir qui as le plus de puissance restante aves ses troupes cac)
+	L'ordre de frappe est le suivant Siege, Mages, Distance, Mages, CAC
+	Example:
+	Joueur 1(ATK) 				vs			Joueur2(DEF) (10%)
+
+	Soldats   50                           	Soldats   40
+	Archers   30 							Archers   20
+	Mages     15							Mages     20
+	Siege     2 							Siege     3
+
+	puissance de chaque troupe:
+		soldats = 100
+		archer = 50
+		mages = 50
+		siege = 300
+
+	Puissances:
+
+	Joueur 1 	Soldats = 5000  	  Archer = 1500 	 Mages = 750  	     Siege = 600
+	Joueur 2    Soldats = 4000+400  Archer = 1000+100  Mages = 1000 + 100  Siege = 900 + 90
+
+	Attaque des armes de siege:
+		joueur1--> detruit 3 soldats 2 archers et 1 mage 110*3+55*2+55*1=495   600-495=105 (il aurait pu detruire un archer mais ici on va dire il as cibler un soldat mais vu qu'il avait pas assez pour detruire le soldat cibler il as simplement perdu son atk)
+
+		joueur2--> j'ai la flemme de faire les calculs ont dit il detruit 9 soldats issou
+	Attaque des mages:
+		FLEMME DE CONTINUER j'espere t'as compris comment ca marche il va y avoir attaque des mages, apres atttaque des a distance et apres re- les mages
+
+	timelapse
+
+	attaque de soldats:
+		on dit qu'il reste 18 au joueur1 et 15 au joueur2
+		du coup 1800 puissance et 1650 puissance
+		pour calculer le vainquer ont calcule les deuxpuissances finales avec ca et on enleve au premier resultat le deuxieme resultat:
+			powerAtkFinale = powerAtk * random.randint(80, 120)/100 
+			powerDefFinale = powerDef * random.randint(80, 120)/100
+		Si le resultat est positif alors l'attaquant gagne sinon le defenseur gagne
+		Le nombre de troupes cac survivantes des 2 cotes est egal a:
+			x = powerFinaleVainqueur/powerFinalePerdant  (on obtiens comme ca le pourcentage deu perdant par rapport au gagnant)
+			pertesGagnants = x/2*powerAtk(pas la power finale mais la power cac avant le +- 20%)
+			une fois qu'on as la power on enleve des units cac de facon aleatoire jusque a ce que ca sois possible
+
+			Pour le defenseur c'est la meme chose mais au moment de calculer x on fais le contraire:
+			x = powerFinalePerdant/powerFinaleGagnant (on obtiens un nombre plus grand que 1)
+			pertesPerdant = x/2*powerDef 
+			NB avec ces calculs pour arriver a tout peter du cotes defenseur ils faut que le gagnant ai le double de power restante finale par rapport au perdant
+
+		Avec l'example d'avant(pour des raisons de simpliciter on dit qu'ils ont eu aucun channgement a cause du random.randint)
+		Power restante atk = 1800
+		Power restante def = 1650
+		Xatk = (1650/1800)/2 = +- 0.45
+		Xdef = (1800/1600)/2 = +- 0.54
+		defenseur perd 981 de power
+		attaquant perd 825 power
+
+
+		Calculer les pertes et les gains
+			Deja ofc les troupes tuer dans le combat par les troupes non-cac sont OMG mortes 
+			Les armes de siege vont TOUTES au vainqueur
+			Vainquer du defenseur:
+				Le defenseur gagne 40% des survivants des mages et des a distance de l'ennemi
+				Le defenseur gagne 25% des troupes cac survivantes de l'ennemi
+				Le restant des troupes attaquante retournent a la base
+
+			Vainqueur de l'attaquant:
+				L'attaquant gagne 50% des survivants mages et a distances ennemies
+				L'attaquant gagne 30% des troupes cac survivantes de l'ennemi
+
+-----------------------------------------------------------------------------------------
+
+Les maps
+
+Il y as donc 5 maps avec chaqu'une 25-30 zones +-
+Chaque personne doit choisir sa map ainsi que son spawn point sur la map(qui correspond a une zone)
+Une fois que notre spawn point est choisi il faut 3 jours pour le changer et on ne peux pas attaquer 
+sur une autre map que celle ou se trouve notre spawn point
+
+Chaque zone que tu controle te garanti un +5% toutes les ressources (l'equivalent d'un premium +- 
+mais t'auras plein de moyens pour gagner des %)
+
+Pour attaquer les maps il y auras aussi la methode "a distance", cette methode cher en ressources, 
+pas risquer et pas tres efficace est tres simple elle permet sans rien risquer juste en utilisant 
+des troupes a distances sur une map voisine de detruire des troupes et de baisser le % de bonus 
+defense que as le defenseur.
+Les formules et d'autres precisions:
+	Les a distances detruisent que les troupes
+	Mages et armes de siege detruisent troupes et baissent le %
+	Pour la puissance on calcul comme pour les atks normales mais en divisant par 2 la puissance 
+	des attaquants
+	Pour calculer le % en moins du bonus defense c'est juste que pour chaque 100 points de degats cumuler tu enleve 1% (maximum 30% du total)
+	Du coup si on dit que tu as 10000 puissance de siege tu feras 100% en moins maximum et s'il as +150% de bonus de defense tu en feras donc 45% (donc au final 105%)
+-----------------------------------------------------------------------------------------
+Batiments:
+	1 mine pour chaque mineraux
